@@ -121,7 +121,7 @@ test('More deeper', function(t){
     t.deepEqual(result, expectedOutput);
 });
 
-test('More deeper', function(t){
+test('recursive', function(t){
     var a = {
             foo: 'bar',
             bar: 'foo',
@@ -146,6 +146,9 @@ test('More deeper', function(t){
             },
             d: {
                 a:1
+            },
+            e: {
+                a:1
             }
         },
         expectedOutput = {
@@ -162,12 +165,15 @@ test('More deeper', function(t){
                 e: {
                     a:1
                 }
+            },
+            e: {
+                a:1
             }
         };
 
     t.plan(1);
 
-    var result = diffy(a, b);
+    var result = diffy(a, b, true);
 
     t.deepEqual(result, expectedOutput);
 });

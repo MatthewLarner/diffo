@@ -1,4 +1,4 @@
-module.exports = function(objectA, objectB){
+module.exports = function(objectA, objectB, recursive){
     var result = {},
         keys,
         key;
@@ -8,14 +8,18 @@ module.exports = function(objectA, objectB){
 
         for (var i = 0; i < keys.length; i++) {
             key = keys[i];
+
             if(a[key] !== b[key]) {
                 result[key] = a[key];
             }
         }
     }
 
-    getDifference(objectA, objectB);
-    getDifference(objectB, objectA);
+    if(!recursive) {
+        getDifference(objectA, objectB);
+        getDifference(objectB, objectA);
+    }
+
 
     return result;
 };
