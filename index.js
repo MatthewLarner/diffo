@@ -1,8 +1,16 @@
 var sameValue = require('same-value');
 
-module.exports = function getDifference(objectA, objectB){
+module.exports = function getDifference(objectA, objectB, missingKeys){
+    if(objectA == null) {
+        return objectB;
+    }
+
     var result = {},
-        keys = Object.keys(objectA).concat(Object.keys(objectB));
+        keys = Object.keys(objectB);
+
+    if(missingKeys) {
+        keys = Object.keys(objectA).concat(keys);
+    }
 
     for (var i = 0; i < keys.length; i++) {
         var key = keys[i],

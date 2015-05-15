@@ -3,11 +3,11 @@ var test = require('tape'),
 
 test('Simple object', function(t){
     var a = {
-            foo: 'bar',
-            bar: 'foo'
+            foo: 'bar'
         },
         b = {
-            foo: 'bar'
+            foo: 'bar',
+            bar: 'foo'
         },
         expectedOutput = {
             bar: 'foo'
@@ -32,13 +32,7 @@ test('Deeper object', function(t){
         b = {
             foo: 'bar'
         },
-        expectedOutput = {
-            bar: 'foo',
-            b: {
-                a:1,
-                b:2
-            }
-        };
+        expectedOutput = {};
 
     t.plan(1);
 
@@ -64,10 +58,8 @@ test('More deeper', function(t){
             }
         },
         expectedOutput = {
-            bar: 'foo',
             b: {
-                a:1,
-                b:2
+                a:1
             }
         };
 
@@ -101,12 +93,7 @@ test('More deeper', function(t){
             }
         },
         expectedOutput = {
-            bar: 'foo',
             b: {
-                a:1,
-                b:2
-            },
-            c: {
                 a:1
             },
             d:{
@@ -152,19 +139,11 @@ test('recursive', function(t){
             }
         },
         expectedOutput = {
-            bar: 'foo',
             b: {
-                a:1,
-                b:2
-            },
-            c: {
                 a:1
             },
             d:{
-                a:1,
-                e: {
-                    a:1
-                }
+                a:1
             },
             e: {
                 a:1
@@ -173,7 +152,16 @@ test('recursive', function(t){
 
     t.plan(1);
 
-    var result = diffy(a, b, true);
+    var result = diffy(a, b);
 
     t.deepEqual(result, expectedOutput);
+});
+
+test('pass null', function(t){
+    t.plan(1);
+
+    var b = {a:1},
+        expectedOutput = b;
+
+    t.equal(diffy(null, b), expectedOutput);
 });
