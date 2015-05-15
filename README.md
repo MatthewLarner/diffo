@@ -1,4 +1,4 @@
-# Diffy
+# Diffo
 
 Recursively create an object that is the difference between two objects.
 

@@ -1,5 +1,5 @@
 {
-  "name": "diffy",
+  "name": "diffo",
   "version": "1.0.0",
   "description": "Recursively create an object that is the difference between two objects.",
   "main": "index.js",
@@ -19,13 +19,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matthewLarner/diffy.git"
+    "url": "git+https://github.com/matthewLarner/diffo.git"
   },
   "keywords": [
     "diff"
   ],
   "bugs": {
-    "url": "https://github.com/matthewLarner/diffy/issues"
+    "url": "https://github.com/matthewLarner/diffo/issues"
   },
-  "homepage": "https://github.com/matthewLarner/diffy#readme"
+  "homepage": "https://github.com/matthewLarner/diffo#readme"
 }
