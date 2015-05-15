@@ -1,25 +1,32 @@
-module.exports = function(objectA, objectB, recursive){
+var sameValue = require('same-value');
+
+module.exports = function getDifference(objectA, objectB){
     var result = {},
-        keys,
-        key;
+        keys = Object.keys(objectA).concat(Object.keys(objectB));
 
-    function getDifference(a, b) {
-        keys = Object.keys(a);
+    for (var i = 0; i < keys.length; i++) {
+        var key = keys[i],
+            valueA = objectA[key],
+            valueB = objectB[key];
 
-        for (var i = 0; i < keys.length; i++) {
-            key = keys[i];
-
-            if(a[key] !== b[key]) {
-                result[key] = a[key];
+        if(valueB && typeof valueB === 'object') {
+            if(!valueA || typeof valueA !== 'object') {
+                result[key] = valueB;
+                continue;
             }
+
+            var diff = getDifference(valueA, valueB);
+
+            if(Object.keys(diff).length) {
+                result[key] = diff;
+            }
+            continue;
+        }
+
+        if(!sameValue(valueA, valueB)) {
+            result[key] = valueB;
         }
     }
-
-    if(!recursive) {
-        getDifference(objectA, objectB);
-        getDifference(objectB, objectA);
-    }
-
 
     return result;
 };
