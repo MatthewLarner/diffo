@@ -20,7 +20,7 @@ test('Simple object', function(t){
     t.deepEqual(result, expectedOutput);
 });
 
-test('Deeper object', function(t){
+test('Deep object', function(t){
     var a = {
             foo: 'bar',
             bar: 'foo',
@@ -41,7 +41,7 @@ test('Deeper object', function(t){
     t.deepEqual(result, expectedOutput);
 });
 
-test('More deeper', function(t){
+test('Deep object with same keys only one value different', function(t){
     var a = {
             foo: 'bar',
             bar: 'foo',
@@ -70,7 +70,7 @@ test('More deeper', function(t){
     t.deepEqual(result, expectedOutput);
 });
 
-test('More deeper', function(t){
+test('Deep object with same keys only one value different and additional keys', function(t){
     var a = {
             foo: 'bar',
             bar: 'foo',
@@ -108,7 +108,7 @@ test('More deeper', function(t){
     t.deepEqual(result, expectedOutput);
 });
 
-test('recursive', function(t){
+test('Deeper object', function(t){
     var a = {
             foo: 'bar',
             bar: 'foo',
@@ -157,7 +157,7 @@ test('recursive', function(t){
     t.deepEqual(result, expectedOutput);
 });
 
-test('pass null', function(t){
+test('Pass null for object a results in object b', function(t){
     t.plan(1);
 
     var b = {a:1},

@@ -1,11 +1,11 @@
 # Diffo
 
-Recursively create an object that is the difference between two objects.
+Recursively create an object that is the difference between two deeply nested objects.
 
 # Usage
 
 ```javascript
-var diffy = require('diffy);
+var diffy = require('diffy');
 
 var difference = diffy({a:1}, {a:1, b:2}); // result -> {b:2}
 ```
