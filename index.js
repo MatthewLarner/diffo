@@ -23,6 +23,19 @@ module.exports = function getDifference(objectA, objectB, missingKeys){
                 continue;
             }
 
+            if(Array.isArray(valueB)) {
+                if(Array.isArray(valueA) && (valueA.length !== valueB.length)) {
+                    result[key] = valueB;
+                    continue;
+                }
+
+                for (var index = 0; index < valueB.length; index++) {
+                    result[key] = [];
+                    result[key].push(valueB[i]);
+                    continue;
+                }
+            }
+
             var diff = getDifference(valueA, valueB);
 
             if(Object.keys(diff).length) {

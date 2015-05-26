@@ -157,6 +157,42 @@ test('Deeper object', function(t){
     t.deepEqual(result, expectedOutput);
 });
 
+test('Array values', function(t){
+    t.plan(1);
+
+    var a = {
+            x:1
+        },
+        b = {
+            x:1,
+            y: [1,2,3,4]
+        },
+        expectedOutput = {
+            y: [1,2,3,4]
+        };
+
+    t.deepEqual(diffy(a, b), expectedOutput);
+});
+
+test('Array same key, values in different order', function(t){
+    t.plan(1);
+
+    var a = {
+            x:1,
+            y: [4,3,2,1]
+        },
+        b = {
+            a:1,
+            y: [1,2,3,4]
+        },
+        expectedOutput = {
+            a: 1,
+            y: [1,2,3,4]
+        };
+
+    t.deepEqual(diffy(a, b), expectedOutput);
+});
+
 test('Pass null for object a results in object b', function(t){
     t.plan(1);
 
@@ -164,4 +200,42 @@ test('Pass null for object a results in object b', function(t){
         expectedOutput = b;
 
     t.equal(diffy(null, b), expectedOutput);
+});
+
+test('Array same key of different length', function(t){
+    t.plan(1);
+
+    var a = {
+            x:1,
+            y: [1,2,3,4,5]
+        },
+        b = {
+            a:1,
+            y: [1,2,3,4]
+        },
+        expectedOutput = {
+            a: 1,
+            y: [1,2,3,4]
+        };
+
+    t.deepEqual(diffy(a, b), expectedOutput);
+});
+
+test('Array same key of same length differnt values', function(t){
+    t.plan(1);
+
+    var a = {
+            x:1,
+            y: [1,2,4,3]
+        },
+        b = {
+            a:1,
+            y: [1,2,3,4]
+        },
+        expectedOutput = {
+            a: 1,
+            y: [1,2,3,4]
+        };
+
+    t.deepEqual(diffy(a, b), expectedOutput);
 });
