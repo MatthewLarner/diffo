@@ -202,12 +202,12 @@ test('Pass null for object a results in object b', function(t){
     t.equal(diffy(null, b), expectedOutput);
 });
 
-test('Array same key of different length', function(t){
+test('Array same key of same length differnt values', function(t){
     t.plan(1);
 
     var a = {
             x:1,
-            y: [1,2,3,4,5]
+            y: [1,2,4,3]
         },
         b = {
             a:1,
@@ -221,12 +221,12 @@ test('Array same key of different length', function(t){
     t.deepEqual(diffy(a, b), expectedOutput);
 });
 
-test('Array same key of same length differnt values', function(t){
+test('Array same key of different length', function(t){
     t.plan(1);
 
     var a = {
             x:1,
-            y: [1,2,4,3]
+            y: [1,2,3,4,5]
         },
         b = {
             a:1,

@@ -4,7 +4,6 @@ module.exports = function getDifference(objectA, objectB, missingKeys){
     if(objectA == null) {
         return objectB;
     }
-
     var result = {},
         keys = Object.keys(objectB);
 
@@ -15,7 +14,8 @@ module.exports = function getDifference(objectA, objectB, missingKeys){
     for (var i = 0; i < keys.length; i++) {
         var key = keys[i],
             valueA = objectA[key],
-            valueB = objectB[key];
+            valueB = objectB[key],
+            goToNextKey = false;
 
         if(valueB && typeof valueB === 'object') {
             if(!valueA || typeof valueA !== 'object') {
@@ -29,11 +29,19 @@ module.exports = function getDifference(objectA, objectB, missingKeys){
                     continue;
                 }
 
-                for (var index = 0; index < valueB.length; index++) {
-                    result[key] = [];
-                    result[key].push(valueB[i]);
-                    continue;
+                if(Array.isArray(valueA)) {
+                    for (var index = 0; index < valueB.length; index++) {
+                        if(!sameValue(valueA[index], valueB[index])) {
+                            result[key] = valueB;
+                            goToNextKey = true;
+                            break;
+                        }
+                    }
                 }
+            }
+
+            if(goToNextKey) {
+                continue;
             }
 
             var diff = getDifference(valueA, valueB);
