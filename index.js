@@ -1,10 +1,14 @@
 var sameValue = require('same-value');
 
+function isObject(object) {
+    return (object === Object(object) && (!Array.isArray(object)));
+}
+
 module.exports = function getDifference(objectA, objectB, missingKeys){
     if(objectA == null) {
         return objectB;
     }
-    var result = {},
+    var result = Array.isArray(objectB) ? [] : {},
         keys = Object.keys(objectB);
 
     if(missingKeys) {
@@ -24,13 +28,12 @@ module.exports = function getDifference(objectA, objectB, missingKeys){
             }
 
             if(Array.isArray(valueB)) {
-                if(Array.isArray(valueA) && (valueA.length !== valueB.length)) {
-                    result[key] = valueB;
-                    continue;
-                }
+                var valueAIsArray = Array.isArray(valueA),
+                    valueALength = valueA.length,
+                    valueBLength = valueB.length;
 
-                if(Array.isArray(valueA)) {
-                    for (var index = 0; index < valueB.length; index++) {
+                if(valueAIsArray) {
+                    for (var index = 0; index < (Math.max(valueALength, valueBLength)); index++) {
                         if(!sameValue(valueA[index], valueB[index])) {
                             result[key] = valueB;
                             goToNextKey = true;
