@@ -259,7 +259,7 @@ test('Object A same key not an array', function(t){
     t.deepEqual(diffy(a, b), expectedOutput);
 });
 
-test('Array same key of different length', function(t){
+test.only('Array with object value', function(t){
     t.plan(1);
 
     var a = {
@@ -298,5 +298,7 @@ test('Array same key of different length', function(t){
             ]
         };
 
-    t.deepEqual(diffy(a, b), expectedOutput);
+    var result = diffy(a, b);
+
+    t.deepEqual(result, expectedOutput);
 });
