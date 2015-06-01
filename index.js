@@ -1,9 +1,5 @@
 var sameValue = require('same-value');
 
-function isObject(object) {
-    return (object === Object(object) && (!Array.isArray(object)));
-}
-
 module.exports = function getDifference(objectA, objectB, missingKeys){
     if(objectA == null) {
         return objectB;
