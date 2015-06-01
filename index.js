@@ -32,9 +32,9 @@ module.exports = function getDifference(objectA, objectB, missingKeys){
                     valueALength = valueA.length,
                     valueBLength = valueB.length;
 
-                // if (!valueALength && !valueBLength) {
-                //     continue;
-                // }
+                if (!valueALength && !valueBLength) {
+                    continue;
+                }
 
                 if(valueAIsArray) {
                     for (var index = 0; index < (Math.max(valueALength, valueBLength)); index++) {
