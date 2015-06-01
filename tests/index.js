@@ -300,3 +300,21 @@ test('Array same key of different length', function(t){
 
     t.deepEqual(diffy(a, b), expectedOutput);
 });
+
+test('Empty arrays are treated as no change', function(t){
+    t.plan(1);
+
+    var a = {
+            a:2,
+            x: []
+        },
+        b = {
+            a: 1,
+            x: []
+        },
+        expectedOutput = {
+            a: 1
+        };
+
+    t.deepEqual(diffy(a, b), expectedOutput);
+});
