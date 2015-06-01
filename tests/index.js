@@ -1,5 +1,5 @@
 var test = require('tape'),
-    diffy = require('../');
+    diffo = require('../');
 
 test('Simple object', function(t){
     var a = {
@@ -15,7 +15,7 @@ test('Simple object', function(t){
 
     t.plan(1);
 
-    var result = diffy(a, b);
+    var result = diffo(a, b);
 
     t.deepEqual(result, expectedOutput);
 });
@@ -36,7 +36,7 @@ test('Deep object', function(t){
 
     t.plan(1);
 
-    var result = diffy(a, b);
+    var result = diffo(a, b);
 
     t.deepEqual(result, expectedOutput);
 });
@@ -65,7 +65,7 @@ test('Deep object with same keys only one value different', function(t){
 
     t.plan(1);
 
-    var result = diffy(a, b);
+    var result = diffo(a, b);
 
     t.deepEqual(result, expectedOutput);
 });
@@ -103,7 +103,7 @@ test('Deep object with same keys only one value different and additional keys', 
 
     t.plan(1);
 
-    var result = diffy(a, b);
+    var result = diffo(a, b);
 
     t.deepEqual(result, expectedOutput);
 });
@@ -152,7 +152,7 @@ test('Deeper object', function(t){
 
     t.plan(1);
 
-    var result = diffy(a, b);
+    var result = diffo(a, b);
 
     t.deepEqual(result, expectedOutput);
 });
@@ -171,7 +171,7 @@ test('Array values', function(t){
             y: [1,2,3,4]
         };
 
-    t.deepEqual(diffy(a, b), expectedOutput);
+    t.deepEqual(diffo(a, b), expectedOutput);
 });
 
 test('Array same key, values in different order', function(t){
@@ -190,7 +190,7 @@ test('Array same key, values in different order', function(t){
             y: [1,2,3,4]
         };
 
-    t.deepEqual(diffy(a, b), expectedOutput);
+    t.deepEqual(diffo(a, b), expectedOutput);
 });
 
 test('Pass null for object a results in object b', function(t){
@@ -199,7 +199,7 @@ test('Pass null for object a results in object b', function(t){
     var b = {a:1},
         expectedOutput = b;
 
-    t.equal(diffy(null, b), expectedOutput);
+    t.equal(diffo(null, b), expectedOutput);
 });
 
 test('Array same key of same length differnt values', function(t){
@@ -218,7 +218,7 @@ test('Array same key of same length differnt values', function(t){
             y: [1,2,3,4]
         };
 
-    t.deepEqual(diffy(a, b), expectedOutput);
+    t.deepEqual(diffo(a, b), expectedOutput);
 });
 
 test('Array same key of different length', function(t){
@@ -237,7 +237,7 @@ test('Array same key of different length', function(t){
             y: [1,2,3,4]
         };
 
-    t.deepEqual(diffy(a, b), expectedOutput);
+    t.deepEqual(diffo(a, b), expectedOutput);
 });
 
 test('Object A same key not an array', function(t){
@@ -256,7 +256,7 @@ test('Object A same key not an array', function(t){
             y: [1,2,3,4]
         };
 
-    t.deepEqual(diffy(a, b), expectedOutput);
+    t.deepEqual(diffo(a, b), expectedOutput);
 });
 
 test('Array same key of different length', function(t){
@@ -298,7 +298,7 @@ test('Array same key of different length', function(t){
             ]
         };
 
-    t.deepEqual(diffy(a, b), expectedOutput);
+    t.deepEqual(diffo(a, b), expectedOutput);
 });
 
 test('Empty arrays are treated as no change', function(t){
@@ -316,5 +316,5 @@ test('Empty arrays are treated as no change', function(t){
             a: 1
         };
 
-    t.deepEqual(diffy(a, b), expectedOutput);
+    t.deepEqual(diffo(a, b), expectedOutput);
 });
