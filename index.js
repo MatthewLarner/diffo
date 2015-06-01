@@ -21,7 +21,7 @@ module.exports = function getDifference(objectA, objectB, missingKeys){
             valueB = objectB[key],
             goToNextKey = false;
 
-        if(valueB && typeof valueB === 'object') {
+        if(valueB && typeof valueB === 'object' && !valueB instanceof Date) {
             if(!valueA || typeof valueA !== 'object') {
                 result[key] = valueB;
                 continue;
@@ -31,6 +31,10 @@ module.exports = function getDifference(objectA, objectB, missingKeys){
                 var valueAIsArray = Array.isArray(valueA),
                     valueALength = valueA.length,
                     valueBLength = valueB.length;
+
+                if (!valueALength && !valueBLength) {
+                    continue;
+                }
 
                 if(valueAIsArray) {
                     for (var index = 0; index < (Math.max(valueALength, valueBLength)); index++) {
