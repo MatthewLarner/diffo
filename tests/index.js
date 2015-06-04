@@ -259,7 +259,7 @@ test('Object A same key not an array', function(t){
     t.deepEqual(diffo(a, b), expectedOutput);
 });
 
-test('Array same key of different length', function(t){
+test('Array same key of different length 2', function(t){
     t.plan(1);
 
     var a = {
@@ -315,6 +315,16 @@ test('Empty arrays are treated as no change', function(t){
         expectedOutput = {
             a: 1
         };
+
+    t.deepEqual(diffo(a, b), expectedOutput);
+});
+
+test('Arrays with identical objects are not returned', function(t){
+    t.plan(1);
+
+    var a = {foo:[{}]},
+        b = {foo:[{}]},
+        expectedOutput = {};
 
     t.deepEqual(diffo(a, b), expectedOutput);
 });
