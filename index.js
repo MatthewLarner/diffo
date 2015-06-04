@@ -10,7 +10,8 @@ function getDifferenceOrNothing(valueA, valueB){
         if(Array.isArray(valueB)) {
             var valueAIsArray = Array.isArray(valueA),
                 valueALength = valueA.length,
-                valueBLength = valueB.length;
+                valueBLength = valueB.length,
+                result = [];
 
             if (!valueALength && !valueBLength) {
                 return nothing;
@@ -18,8 +19,8 @@ function getDifferenceOrNothing(valueA, valueB){
 
             if(valueAIsArray) {
                 var noDifferance = true,
-                    result = [],
                     sameLength = valueALength === valueBLength;
+
 
                 for (var index = 0; index < valueBLength; index++) {
                     if(sameValue(valueA[index], valueB[index])){
@@ -73,9 +74,6 @@ function getDifference(objectA, objectB, missingKeys){
 
     for (var i = 0; i < keys.length; i++) {
         var key = keys[i],
-            valueA = objectA[key],
-            valueB = objectB[key],
-            goToNextKey = false,
             itemResult = getDifferenceOrNothing(objectA[key], objectB[key]);
 
         if(itemResult === nothing){
@@ -86,6 +84,6 @@ function getDifference(objectA, objectB, missingKeys){
     }
 
     return result;
-};
+}
 
 module.exports = getDifference;
