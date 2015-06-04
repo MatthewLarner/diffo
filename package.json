@@ -1,6 +1,6 @@
 {
   "name": "diffo",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Recursively create an object that is the difference between two objects.",
   "main": "index.js",
   "scripts": {
